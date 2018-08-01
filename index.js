@@ -12,7 +12,6 @@ var app = new Vue({
 				text:null
 			},
 			fundingTimeCalc(){
-				console.log('fundingTimeCalc!')
 				var arrFundingHour = [4,12,20,28]
 				var datetime = new Date()
 				var leftHour = null
@@ -41,10 +40,10 @@ var app = new Vue({
 				if(app.fundingTime.hour>0)
 					app.fundingTime.text += app.fundingTime.hour+' '+((app.fundingTime.hour>1)?'hours':'hour')+' '
 
-				if(app.fundingTime.minute>0)
+				if(app.fundingTime.minute>0&&app.fundingTime.minute!==60)
 					app.fundingTime.text += app.fundingTime.minute+' '+((app.fundingTime.minute>1)?'minutes':'minute')+ ' '
 
-				if(app.fundingTime.second>0)
+				if(app.fundingTime.second>0&&app.fundingTime.second!==60)
 					app.fundingTime.text += app.fundingTime.second+' '+((app.fundingTime.second>1)?'seconds':'second')
 
 				
