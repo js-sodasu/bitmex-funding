@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Bitmex Funding</title>
+	<meta charset="utf-8" />
+	<script src="vue.js"></script>
+	<style>
+	*{padding:0;margin:0;}
+	body{
+		background:#2b2b38;
+		color:#fff;
+		font-family:"Open Sans";
+	}
+	#app{
+		
+	}
+	.app-symbol{
+		line-height: 50px;
+		text-align:center;
+		font-weight: bold;
+		font-size:30px;
+		margin:30px 0;
+	}
+	.symbol-base{
+		border-bottom:5px solid #e8704f
+	}
+	.symbol-quote{
+		border-bottom:5px solid #4ab0ce;
+	}
+	.app-funding{
+		line-height: 50px;
+		text-align:center;
+		font-weight: bold;
+		font-size:30px;
+	}
+	.funding-pcnt{
+
+	}
+	.funding-long{
+		color:#4aa165;
+	}
+	.funding-short{
+		color:#ae543b;
+	}
+	.funding-divide{
+		display:block;
+	}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<div class='app-symbol'>
+			<span class='symbol-base'>XBT</span>
+			<span class='symbol-quote'>USD</span>
+			<p class='symbol-lastPrice'>{{ contracts.XBTUSD.lastPrice }}</p>
+		</div>
+		<div class='app-funding'>
+			<div class='funding-divide'>
+				<span v-bind:class="fundingClass">{{ fundingTurn }}</span>
+				<span> will receive </span>
+				<span class='funding-pcnt' v-bind:class="fundingClass">{{ fundingRate }}%</span>
+			</div>
+			<div class='funding-divide'>
+				<span>{{ fundingTime.text }}</span>
+			</div>
+			
+		</div>
+	</div>
+	
+	
+
+	<script src="index.js"></script>
+</body>
+</html>
