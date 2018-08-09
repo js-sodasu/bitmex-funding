@@ -95,6 +95,10 @@
 		display: table-cell;
 		text-align:center;
 	}
+	.divide{
+		border-top:1px solid #39394A;
+		margin:20px 0;
+	}
 	</style>
 	<script src="vue.js"></script>
 </head>
@@ -114,8 +118,10 @@
 			<div class='funding-divide'>
 				<span>{{ fundingTime.text }}</span>
 			</div>
+			<div class='divide'>
 
-			<div class="funding-divide" style='border-top:1px solid #39394A'>
+			</div>
+			<div class="funding-divide">
 				<div class="table">
 					<div class="cell">
 						<div class='leverage'>{{leverage}}x</div>
