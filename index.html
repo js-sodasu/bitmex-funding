@@ -32,7 +32,7 @@
 	.app-funding{
 		line-height: 50px;
 		text-align:center;
-		font-weight: bold;
+		
 		font-size:30px;
 	}
 	.funding-pcnt{
@@ -46,6 +46,54 @@
 	}
 	.funding-divide{
 		display:block;
+	}
+
+	.slider-container {
+	    width: 200px; 
+	    margin:0 auto;
+	}
+
+	.slider {
+	    -webkit-appearance: none; 
+	    appearance: none;
+	    width: 200px;
+	    height: 25px;
+	    background: #39394A;
+	    outline: none;
+	    opacity: 0.7; 
+	    -webkit-transition: .2s;
+	    transition: opacity .2s;
+	}
+	.slider:hover {
+	    opacity: 1; 
+	}
+	.slider::-webkit-slider-thumb {
+	    -webkit-appearance: none;
+	    appearance: none;
+	    width: 25px;
+	    height: 25px;
+	    background: #fff;
+	    cursor: pointer;
+	}
+
+	.slider::-moz-range-thumb {
+	    width: 25px;
+	    height: 25px;
+	    background: #fff;
+	    cursor: pointer;
+	}
+	.leverage{
+		
+	}
+	.table{
+		display:table;
+		table-layout: fixed;
+		width:450px;
+		margin:0 auto;
+	}
+	.cell{
+		display: table-cell;
+		text-align:center;
 	}
 	</style>
 	<script src="vue.js"></script>
@@ -61,10 +109,24 @@
 			<div class='funding-divide'>
 				<span v-bind:class="fundingClass">{{ fundingTurn }}</span>
 				<span> will receive </span>
-				<span class='funding-pcnt' v-bind:class="fundingClass">{{ fundingRate }}%</span>
+				<span class='funding-pcnt' v-bind:class="fundingClass">{{ fundingProfit }}%</span>
 			</div>
 			<div class='funding-divide'>
 				<span>{{ fundingTime.text }}</span>
+			</div>
+
+			<div class="funding-divide" style='border-top:1px solid #39394A'>
+				<div class="table">
+					<div class="cell">
+						<div class='leverage'>{{leverage}}x</div>
+					</div>
+					<div class="cell">
+						<input type="range" min="1" max="100" value="10" class="slider" v-model="leverage"  >
+					</div>
+				</div>
+				
+				
+				
 			</div>
 			
 		</div>

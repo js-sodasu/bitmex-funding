@@ -2,8 +2,10 @@ var app = new Vue({
 	el: '#app',
 	data(){
 		return {
+			leverage:10,
 			fundingTurn: null,
-			fundingRate: '0.0000',
+			fundingRate: 0,
+			fundingProfit:0,
 			fundingInterval: 3,
 			fundingTime:{
 				hour:null,
@@ -98,6 +100,10 @@ var app = new Vue({
 		}
 	},
 	watch:{
+		leverage:function(val){
+			this.fundingProfit = ((this.fundingRate<0)?-this.fundingRate:this.fundingRate) * this.leverage
+			this.fundingProfit = this.fundingProfit.toFixed(4)
+		},
 		indices:{
 			handler(obj){
 				if( this.indices['.XBTBON8H'].subscribe && 
@@ -106,13 +112,15 @@ var app = new Vue({
 					){
 						
 						this.interestRate = (this.indices['.USDBON8H'].lastPrice - this.indices['.XBTBON8H'].lastPrice) / this.fundingInterval
-						this.fundingRate = (this.indices['.XBTUSDPI8H'].lastPrice + this.Clamp(this.interestRate - this.indices['.XBTUSDPI8H'].lastPrice,-0.05,0.05))
+						
+						this.fundingRate = (this.indices['.XBTUSDPI8H'].lastPrice + this.Clamp(this.interestRate - this.indices['.XBTUSDPI8H'].lastPrice,-0.05/100,0.05/100))
 						this.fundingRate *= 100 
 						this.fundingRate = this.fundingRate.toFixed(4)
 						
 						this.fundingTurn = (this.fundingRate>0)?'Shorts':'Longs'
 
-
+						this.fundingProfit = ((this.fundingRate<0)?-this.fundingRate:this.fundingRate) * this.leverage
+						this.fundingProfit = this.fundingProfit.toFixed(4)
 					}
 
 					document.getElementsByTagName("title")[0].innerHTML = 'XBTUSD '+this.contracts.XBTUSD.lastPrice
