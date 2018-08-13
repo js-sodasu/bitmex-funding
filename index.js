@@ -2,7 +2,7 @@ var app = new Vue({
 	el: '#app',
 	data(){
 		return {
-			leverage:10,
+			leverage:1,
 			fundingTurn: null,
 			fundingRate: 0,
 			fundingProfit:0,
